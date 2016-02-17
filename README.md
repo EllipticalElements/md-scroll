@@ -24,8 +24,8 @@ bower install md-scroll --save
 ## Public Properties
 
 
-1.  selector {String}: the scrollable element selector
-..* default value: '[md-scroll]'
+-  selector {String}: the scrollable element selector
+  - default value: '[md-scroll]'
 
 
 
