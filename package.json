@@ -1,0 +1,11 @@
+{
+  "name": "md-scroll",
+  "description": "md-scroll",
+  "version": "1.0.0",
+  "author": "S. Francis",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EllipticalElements/md-scroll.git"
+  }
+}

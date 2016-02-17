@@ -1,0 +1,54 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="ftscroller.js"></script>
+
+<dom-module id="md-scroll">
+    <style></style>
+    <template>
+    </template>
+</dom-module>
+<script>
+
+    Polymer({
+
+        is: 'md-scroll',
+
+
+        properties: {
+           selector:{
+               type:String,
+               value:null
+           }
+           _scroller:{
+               type:Object,
+               value:null
+           }
+        },
+
+        ready:function(){
+            var self=this;
+            setTimeout(function(){
+                self._initScroll();
+            },500);
+        },
+
+        detached:function(){
+            var scroller=this._scroller;
+            scroller.destroy();
+        },
+
+        _initScroll:function(){
+            var selector=(this.selector) ? this.selector : '[md-scroll]';
+            var container = $(document).find(selector)[0];
+            if(container){
+                var scroller = new FTScroller(container, {
+                    scrollbars: false,
+                    scrollingX: false
+                });
+                this._scroller=scroller;
+
+            }
+        },
+
+    });
+
+</script>
