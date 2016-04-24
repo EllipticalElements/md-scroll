@@ -1,6 +1,6 @@
 {
   "name": "md-scroll",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "authors": [
     "S. Francis"
   ],
@@ -10,11 +10,11 @@
     "polymer",
     "md",
     "material design",
-    "radio button"
+    "scroll"
   ],
-  "main": "md-radio.html",
+  "main": "md-scroll.html",
   "license": "MIT",
-  "homepage": "https://github.com/EllipticalElements/md-radio",
+  "homepage": "https://github.com/EllipticalElements/md-scroll",
   "ignore": [
     "/.*",
     "/test/",
@@ -41,8 +41,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
-    "elliptical-polymer-behaviors": "~1.1.0",
-    "neon-animation": "PolymerElements/neon-animation#~1.0.9"
+    "elliptical-polymer-behaviors": "~1.1.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
