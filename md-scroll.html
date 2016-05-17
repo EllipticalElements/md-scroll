@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../elliptical-polymer-behaviors/component-behavior.html">
+<link rel="import" href="../elliptical-mutation-summary/elliptical-mutation-summary.html">
 <script src="ftscroller.js"></script>
 
 <dom-module id="md-scroll">
@@ -12,42 +14,67 @@
 
         is: 'md-scroll',
 
+        behaviors: [Elliptical.ComponentBehavior],
 
         properties: {
-           selector:{
-               type:String,
-               value:null
-           },
-           _scroller:{
-               type:Object,
-               value:null
-           }
+            selector:{
+                type:String,
+                value:'[md-scroll]'
+            },
+            _scroller:{
+                type:Object,
+                value:null
+            }
         },
 
         ready:function(){
-            var self=this;
-            setTimeout(function(){
-                self._initScroll();
-            },500);
+            this._events();
         },
 
         detached:function(){
-            var scroller=this._scroller;
-            scroller.destroy();
+            this._destroyScroller();
         },
 
-        _initScroll:function(){
-            var selector=(this.selector) ? this.selector : '[md-scroll]';
-            var container = $(document).find(selector)[0];
-            if(container){
-                var scroller = new FTScroller(container, {
-                    scrollbars: false,
-                    scrollingX: false
-                });
-                this._scroller=scroller;
+        _events:function(){
+            this._event($(document),'OnDocumentMutation',this._onMutation.bind(this));
+        },
 
+        _onMutation:function(event,summary){
+            var self=this;
+            var scrollable;
+            var added=summary.added;
+            var removed=summary.removed;
+            if(added && added.length > 0) {
+                if(this._scroller) return;
+                added=$(added);
+                scrollable=added.find(this.selector);
+                if(scrollable[0]) {
+                    setTimeout(function(){
+                        self._initScroll(scrollable[0]);
+                    },1250);
+                }
+            }
+            if(removed && removed.length){
+                if(!this._scroller) return;
+                removed=$(removed);
+                scrollable=removed.find(this.selector);
+                if(scrollable[0]) this._destroyScroller();
             }
         },
+
+        _destroyScroller:function(){
+            var scroller=this._scroller;
+            if(scroller) scroller.destroy();
+        },
+
+        _initScroll:function(scrollable){
+            var scroller = new FTScroller(scrollable, {
+                scrollbars: false,
+                scrollingX: false
+            });
+
+            this._scroller=scroller;
+        }
 
     });
 
