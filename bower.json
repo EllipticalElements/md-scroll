@@ -1,6 +1,6 @@
 {
   "name": "md-scroll",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "authors": [
     "S. Francis"
   ],
@@ -41,7 +41,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
-    "elliptical-polymer-behaviors": "~1.1.0",
+    "elliptical-polymer-behaviors": "~1.2.0",
     "elliptical-mutation-summary": "~1.0.2"
   },
   "devDependencies": {
